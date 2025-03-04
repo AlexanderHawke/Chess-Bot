@@ -1,27 +1,26 @@
 class ChessBot:
 
     def __init__(self):
-        self.board = [[0]*8]*8
-        self.whitePieces = {
-                            "pawns":    [(0,1), (1,1), (2,1), (3,1), (4,1), (5,1), (6,1), (7,1)], 
-                            "knights":  [(1,0), (6,0)], 
-                            "bishops":  [(2,0), (5,0)], 
-                            "rooks":    [(0,0), (7,0)], 
-                            "queens":   [(3,0)], 
-                            "king":     [(4,0)]
-                            }
-
-        self.blackPieces = {
-                            "pawns":    [(0,6), (1,6), (2,6), (3,6), (4,6), (5,6), (6,6), (7,6)], 
-                            "knights":  [(1,7), (6,7)], 
-                            "bishops":  [(2,7), (5,7)], 
-                            "rooks":    [(0,7), (7,7)], 
-                            "queens":   [(3,7)], 
-                            "king":     [(4,7)]
-                            }
+        
+        # Initialize the board as the starting position with the white pieces facing the player.
+        self.board = [
+        ["bR", "bN", "bB", "bQ", "bK", "bB", "bN", "bR"],
+        ["bP", "bP", "bP", "bP", "bP", "bP", "bP", "bP"],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        ["wP", "wP", "wP", "wP", "wP", "wP", "wP", "wP"],
+        ["wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"]
+        ]
 
         self.playerWhite = True
-        self.materialCost = {"pawns": 1, "knights": 3, "bishops": 3, "rooks": 5, "queens": 8, "king": 1000}
+        self.materialCost = {"wP": 1, "bP": 1, # Pawns are worth 1
+                             "wN": 3, "bN": 3, # Knights are worth 3
+                             "wB": 3, "bB": 3, # Bishops are worth 3
+                             "wR": 5, "bR": 5, # Rooks are worth 5
+                             "wQ": 9, "wQ": 9, # Queens are worth 9
+                             "wK": 1000, "bK": 1000} # Kings are worth 1000
 
     def __str__(self):
         return  '\n'.join(' '.join(str(x) for x in row) for row in self.board)
@@ -29,24 +28,6 @@ class ChessBot:
     def __repr__(self):
         return str(self.board) + "LOL!"
 
-    def setupBoard(self):
-        # INFO: print(self.whitePieces["pawns"]) 
-        # INFO: [(1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2)]
-
-        for key, value in self.whitePieces.items():
-            for piece in value:
-                print("WhitePieces: ")
-                print(piece)
-                print(piece[0], piece[1])
-                self.board[piece[0]][piece[1]] = key
-        for key, value in self.blackPieces.items():
-            for piece in value:
-                print("BlackPieces: ")
-                print(piece)
-                print(piece[0], piece[1])
-                self.board[piece[0]][piece[1]] = key
-
 chessBot = ChessBot()
-chessBot.setupBoard()
 print(chessBot)
 repr(chessBot)
