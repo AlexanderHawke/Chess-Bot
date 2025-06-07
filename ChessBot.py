@@ -24,10 +24,8 @@ class ChessBot:
 
     def __str__(self):
         return  '\n'.join(' '.join(str(x) for x in row) for row in self.board)
-
-    def __repr__(self):
-        return str(self.board) + "LOL!"
+    
+    
 
 chessBot = ChessBot()
 print(chessBot)
-repr(chessBot)
